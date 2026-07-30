@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISODocks — Privacy Policy</title>
+<meta name="description" content="Privacy policy for ISODocks, a Revit add-in for piping isometrics and PCF export, published by Spiros Manetakis.">
+<style>
+  :root{
+    --ink:#16191d;
+    --ink-soft:#4a5058;
+    --rule:#d7dbe0;
+    --paper:#ffffff;
+    --wash:#f5f7f8;
+    --accent:#1f5f8b;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:46rem;margin:0 auto;padding:3rem 1.25rem 5rem}
+  header{border-bottom:2px solid var(--ink);padding-bottom:1rem;margin-bottom:2rem}
+  .eyebrow{
+    font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 .4rem
+  }
+  h1{font-size:1.9rem;line-height:1.2;margin:0 0 .5rem;font-weight:650}
+  .updated{color:var(--ink-soft);font-size:.9rem;margin:0}
+  h2{
+    font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;
+    margin:2.5rem 0 .75rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+    font-weight:650
+  }
+  h2:first-of-type{border-top:0;padding-top:0}
+  p{margin:0 0 1rem}
+  ul{margin:0 0 1rem;padding-left:1.2rem}
+  li{margin-bottom:.45rem}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .lede{
+    background:var(--wash);border-left:3px solid var(--accent);
+    padding:1rem 1.15rem;margin:0 0 2rem
+  }
+  .lede p:last-child{margin-bottom:0}
+  footer{
+    margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+    color:var(--ink-soft);font-size:.875rem
+  }
+  @media print{
+    body{font-size:11pt}
+    .wrap{padding:0}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">dev4revit</p>
+  <h1>ISODocks — Privacy Policy</h1>
+  <p class="updated">Last updated: 30 July 2026</p>
+</header>
+
+<div class="lede">
+  <p><strong>The short version.</strong> ISODocks keeps all of your working data in
+  locations you choose — in your Revit project, next to your model, or in a folder you
+  nominate — and does not transmit it anywhere. The only information the add-in sends is
+  a license verification request to the Autodesk App Store, described below. The only
+  personal data we hold is what you send us directly by email, and what Autodesk provides
+  to us about purchases and downloads of the app.</p>
+</div>
+
+<h2>Who we are</h2>
+<p>ISODocks is developed and published by Spiros Manetakis, Germany. For any question
+about this policy or about your data, contact
+<a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>.</p>
+
+<h2>Data handled by the add-in</h2>
+<p>ISODocks creates and reads the following, all of it on your own computer or on storage
+you already use for the project:</p>
+<ul>
+  <li>Settings stored inside the Revit project file itself.</li>
+  <li>A component mapping file saved beside your model. On a workshared project this sits
+      next to the central model, so that your team shares one file. Where the model has no
+      writable folder, the mapping is kept in your own user profile folder instead.</li>
+  <li>Title block values saved in the same place as the mapping file.</li>
+  <li>Starting-point defaults kept in your user profile folder.</li>
+  <li>The isometric drawings and PCF files that ISODocks produces, written to the output
+      folder you choose.</li>
+</ul>
+<p>None of this is uploaded, backed up, analysed, or transmitted to us or to anyone else.
+Where a file is written to a network location, it is because you pointed ISODocks at that
+location.</p>
+<p>ISODocks contains no analytics, no telemetry, and no usage tracking.</p>
+<p>ISODocks reads your AutoCAD Plant 3D project folder, if you configure one, in order to
+match the symbols and title block of the iso style you render with. It reads those files
+only; it does not modify them and does not send their contents anywhere.</p>
+<p>Your project data, drawings, and models are never accessed for any purpose other than
+producing the documentation you request within the application.</p>
+
+<h2>License verification</h2>
+<p>When the add-in starts, it verifies that your Autodesk account is licensed to use it.
+To do this it sends your Autodesk user identifier and the app's identifier to the Autodesk
+App Store license service at <code>apps.autodesk.com</code>, which replies whether the
+license is valid. This identifier is an internal Autodesk reference, not your email
+address or name.</p>
+<p>This request goes to Autodesk, not to us. We do not receive it, and no other
+information is included — no project data, no model contents, no file names, no usage
+details. The request is made once per session at start-up.</p>
+<p>The result is stored on your computer so that the add-in continues to work when you are
+offline or the service is unavailable. If verification has not succeeded for 14 days, the
+add-in will ask you to reconnect.</p>
+<p>Autodesk processes this request under its own privacy policy.</p>
+
+<h2>Data you send us</h2>
+<p>If you contact us for support, we receive your email address and whatever information
+you choose to include in your message. We use this solely to answer your enquiry and to
+provide support. We do not use it for marketing, and we do not share it with anyone.</p>
+<p>The lawful basis for this processing is our legitimate interest in responding to
+enquiries and supporting our customers (Art. 6(1)(f) GDPR), and where a purchase is
+involved, the performance of a contract (Art. 6(1)(b) GDPR).</p>
+<p>Support correspondence is retained for up to 12 months after the matter is resolved,
+after which it is deleted.</p>
+
+<h2>Data we receive from the Autodesk App Store</h2>
+<p>When you purchase or download ISODocks through the Autodesk App Store, Autodesk
+provides us with information about that transaction, which may include your name and email
+address. We use this only to fulfil the purchase, to provide support, and to meet our
+record-keeping obligations. We do not use it for marketing and we do not share it with
+third parties.</p>
+<p>Records connected with purchases are retained for as long as required by applicable
+German commercial and tax law.</p>
+<p>Please note that the Autodesk App Store, and any payment provider used to complete your
+purchase, process your data under their own privacy policies, which are separate from this
+one.</p>
+
+<h2>Your rights</h2>
+<p>Under the GDPR you have the right to request access to the personal data we hold about
+you, to have it corrected or deleted, to restrict or object to its processing, and to
+receive it in a portable form. You also have the right to lodge a complaint with a data
+protection supervisory authority.</p>
+<p>To exercise any of these rights, write to
+<a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>. We will respond
+within one month.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the updated version will be published at
+<a href="https://dev4revit.github.io/policies/privacy-isodocks.html">this address</a>.</p>
+
+<footer>
+  <p>dev4revit · Spiros Manetakis ·
+  <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a><br>
+  <a href="help-isodocks.html">ISODocks help</a> ·
+  <a href="../">All products</a></p>
+</footer>
+
+</div>
+</body>
+</html>
