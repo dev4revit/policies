@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ISODocks — Privacy Policy</title>
-<meta name="description" content="Privacy policy for ISODocks, a Revit add-in for piping isometrics and PCF export, published by Spiros Manetakis.">
+<title>ISODocks — Help</title>
+<meta name="description" content="Help for ISODocks: 3D isometrics inside Revit, and PCF export to ISOGEN via AutoCAD Plant 3D.">
 <style>
   :root{
     --ink:#16191d;
@@ -13,39 +13,55 @@
     --paper:#ffffff;
     --wash:#f5f7f8;
     --accent:#1f5f8b;
+    --warn:#8a5a00;
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{
     margin:0;
     background:var(--paper);
     color:var(--ink);
     font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
-  .wrap{max-width:46rem;margin:0 auto;padding:3rem 1.25rem 5rem}
+  .wrap{max-width:50rem;margin:0 auto;padding:3rem 1.25rem 5rem}
   header{border-bottom:2px solid var(--ink);padding-bottom:1rem;margin-bottom:2rem}
   .eyebrow{
     font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
     color:var(--ink-soft);margin:0 0 .4rem
   }
   h1{font-size:1.9rem;line-height:1.2;margin:0 0 .5rem;font-weight:650}
-  .updated{color:var(--ink-soft);font-size:.9rem;margin:0}
+  .sub{color:var(--ink-soft);margin:0}
+
+  nav.toc{background:var(--wash);padding:1rem 1.15rem;margin:0 0 2.5rem}
+  nav.toc ol{margin:0;padding-left:1.3rem;columns:2;column-gap:2rem}
+  nav.toc li{margin-bottom:.3rem;break-inside:avoid}
+  @media (max-width:34rem){nav.toc ol{columns:1}}
+
   h2{
-    font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;
-    margin:2.5rem 0 .75rem;padding-top:1.25rem;border-top:1px solid var(--rule);
-    font-weight:650
+    font-size:1.05rem;letter-spacing:.05em;text-transform:uppercase;
+    margin:2.75rem 0 .85rem;padding-top:1.25rem;border-top:1px solid var(--rule);
+    font-weight:650;scroll-margin-top:1rem
   }
-  h2:first-of-type{border-top:0;padding-top:0}
+  h3{font-size:1rem;margin:1.6rem 0 .5rem;font-weight:650}
   p{margin:0 0 1rem}
-  ul{margin:0 0 1rem;padding-left:1.2rem}
+  ul,ol{margin:0 0 1rem;padding-left:1.25rem}
   li{margin-bottom:.45rem}
   a{color:var(--accent)}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .lede{
-    background:var(--wash);border-left:3px solid var(--accent);
-    padding:1rem 1.15rem;margin:0 0 2rem
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.9em;background:var(--wash);padding:.1em .35em;border-radius:2px
   }
-  .lede p:last-child{margin-bottom:0}
+  table{border-collapse:collapse;width:100%;margin:0 0 1.25rem;font-size:.94rem}
+  th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{background:var(--wash);font-weight:650}
+  .note{
+    background:var(--wash);border-left:3px solid var(--accent);
+    padding:.9rem 1.1rem;margin:0 0 1.25rem
+  }
+  .note.warn{border-left-color:var(--warn)}
+  .note p:last-child{margin-bottom:0}
   footer{
     margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--rule);
     color:var(--ink-soft);font-size:.875rem
@@ -53,6 +69,7 @@
   @media print{
     body{font-size:11pt}
     .wrap{padding:0}
+    nav.toc{display:none}
     a{color:inherit;text-decoration:none}
   }
 </style>
@@ -62,100 +79,285 @@
 
 <header>
   <p class="eyebrow">dev4revit</p>
-  <h1>ISODocks — Privacy Policy</h1>
-  <p class="updated">Last updated: 30 July 2026</p>
+  <h1>ISODocks — Help</h1>
+  <p class="sub">Piping isometrics from Revit: in the model, or as PCF for ISOGEN.</p>
 </header>
 
-<div class="lede">
-  <p><strong>The short version.</strong> ISODocks keeps all of your working data in
-  locations you choose — in your Revit project, next to your model, or in a folder you
-  nominate — and does not transmit it anywhere. The only information the add-in sends is
-  a license verification request to the Autodesk App Store, described below. The only
-  personal data we hold is what you send us directly by email, and what Autodesk provides
-  to us about purchases and downloads of the app.</p>
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#what">What ISODocks does</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#ribbon">The ribbon</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#tagging">Tagging your pipelines</a></li>
+    <li><a href="#iso3d">3D isometrics</a></li>
+    <li><a href="#pcf">PCF export</a></li>
+    <li><a href="#families">Preparing your families</a></li>
+    <li><a href="#mapping">The mapping window</a></li>
+    <li><a href="#plant3d">Setting up Plant 3D</a></li>
+    <li><a href="#titleblock">Title block values</a></li>
+    <li><a href="#trouble">Troubleshooting</a></li>
+    <li><a href="#license">License verification</a></li>
+    <li><a href="#support">Support</a></li>
+  </ol>
+</nav>
+
+<h2 id="what">1. What ISODocks does</h2>
+<p>ISODocks turns Revit piping into isometric documentation, by two routes. You can use
+either, or both.</p>
+<table>
+  <tr><th>Route</th><th>What you get</th><th>What you need</th></tr>
+  <tr>
+    <td><strong>3D ISO</strong></td>
+    <td>Isometric views generated inside Revit and placed on sheets.</td>
+    <td>Revit only.</td>
+  </tr>
+  <tr>
+    <td><strong>PCF export</strong></td>
+    <td>A PCF file that AutoCAD Plant 3D turns into a fabrication isometric, with bill of
+        materials, weld list and cut list.</td>
+    <td>Revit, plus an AutoCAD entitlement.</td>
+  </tr>
+</table>
+<p>The second route does not reproduce ISOGEN — it feeds it. ISOGEN has handled isometric
+layout, dimensioning and spooling for decades; ISODocks builds the file it expects from
+your Revit model.</p>
+
+<h2 id="requirements">2. Requirements</h2>
+<ul>
+  <li>Revit 2024, 2025, 2026 or 2027.</li>
+  <li>An Autodesk account, signed in to Revit.</li>
+  <li>An internet connection at start-up, at least once every 14 days.</li>
+  <li><strong>For PCF export only:</strong> AutoCAD with the Plant 3D toolset. Anyone with
+      an AutoCAD entitlement has it (One AutoCAD, 2019 and later). A standalone Revit
+      subscription does not include it.</li>
+</ul>
+
+<h2 id="ribbon">3. The ribbon</h2>
+<p>ISODocks adds one tab with four panels.</p>
+<table>
+  <tr><th>Panel</th><th>Button</th><th>What it does</th></tr>
+  <tr><td>Settings</td><td>Settings</td><td>Everything ISODocks needs to know about this project.</td></tr>
+  <tr><td rowspan="4">3D ISO</td><td>Generate ISO</td><td>Builds isometric views for the pipelines you choose.</td></tr>
+  <tr><td>Regenerate</td><td>Rebuilds views after the model has changed.</td></tr>
+  <tr><td>Tags</td><td>Places tags on the generated views.</td></tr>
+  <tr><td>Place on Sheets</td><td>Puts the views onto sheets.</td></tr>
+  <tr><td rowspan="2">PCF</td><td>Mapping</td><td>Reviews and fills the symbol and joint codes for your families.</td></tr>
+  <tr><td>Export PCF</td><td>Writes the PCF file.</td></tr>
+  <tr><td>Info</td><td>About / Privacy</td><td>Version, support address and the full privacy policy.</td></tr>
+</table>
+<p>Hover any button and press <strong>F1</strong> to open this page.</p>
+
+<h2 id="settings">4. Settings</h2>
+<p>Open Settings before anything else. Settings are stored per project, inside the Revit
+file, so they travel with it.</p>
+<table>
+  <tr><th>Setting</th><th>Notes</th></tr>
+  <tr><td>Driver parameter</td><td>The parameter whose value identifies each pipeline. Elements sharing a value form one line. Required.</td></tr>
+  <tr><td>View template</td><td>Applied to the generated 3D isometric views.</td></tr>
+  <tr><td>Title block</td><td>Used when placing those views on sheets.</td></tr>
+  <tr><td>Sheet fit margin</td><td>How much of the title block a view fills, between 0.50 and 0.95.</td></tr>
+  <tr><td>Pipe hanger family</td><td>Which family your hangers use. See <a href="#hangers">section 5</a> — without this, hangers are treated as ordinary fittings.</td></tr>
+  <tr><td>SKEY parameter</td><td>The family type parameter holding the symbol code. Usually <code>ISO_SKEY</code>. Optional.</td></tr>
+  <tr><td>End type parameter</td><td>The family type parameter holding the joint code. Usually <code>ISO_ENDTYPE</code>. Optional.</td></tr>
+  <tr><td>Plant 3D project</td><td>Browse to the project's <code>Project.xml</code>. ISODocks reads that project's symbol map so it can offer and check valid codes. Only needed for PCF export.</td></tr>
+  <tr><td>PCF output folder</td><td>Where the files are written. Leave blank to use the Plant 3D project folder. If neither is set, ISODocks uses the model's folder, then your Desktop. The export report says which it used.</td></tr>
+</table>
+
+<h3 id="template">Preparing the view template</h3>
+<p>Two entries in the template's <em>include</em> list decide whether ISODocks can do its
+job. Everything else in the template is yours to set as you like.</p>
+<table>
+  <tr><th>Template entry</th><th>Setting</th><th>Why</th></tr>
+  <tr>
+    <td><strong>V/G Overrides Filters</strong></td>
+    <td><strong>Unchecked</strong></td>
+    <td>ISODocks applies its own filters to each generated view. When the template includes
+        filters, the template wins and the tool cannot set them.</td>
+  </tr>
+  <tr>
+    <td><strong>View Scale</strong></td>
+    <td>Your choice</td>
+    <td>Checked: every drawing comes out at the same scale, so they compare directly, but a
+        long line may not fit its title block. Unchecked: ISODocks scales each view to fill
+        the sheet, so everything fits at whatever scale it needs.</td>
+  </tr>
+</table>
+
+<h2 id="tagging">5. Tagging your pipelines</h2>
+<p>ISODocks groups elements into pipelines by the value of the driver parameter. Give every
+pipe, fitting and accessory on a line the same value; give a different line a different
+value. That value becomes the line's name on the drawing and the name of its PCF file.</p>
+
+<h3 id="hangers">Hangers</h3>
+<p>Revit has no element type for a pipe hanger, so ISODocks cannot find them on its own.
+A hanger is recognised only when all of the following are true:</p>
+<ul>
+  <li>it is modelled as a <strong>pipe fitting</strong>;</li>
+  <li>it has <strong>connectors</strong> and <strong>cuts the pipe</strong> — the pipe runs
+      into it from both sides;</li>
+  <li>its family is <strong>named in Settings</strong> under <em>Pipe hanger family</em>.</li>
+</ul>
+<p>Once declared, hangers are handled correctly on both routes: the isometric passes through
+them so a hangered pipe still reads as one continuous run, and the PCF export writes them as
+supports. A hanger family that is <em>not</em> declared is treated as an ordinary fitting,
+which puts a joint in the drawing where there is none.</p>
+<p>Hangers need no driver parameter value of their own.</p>
+
+<h3>Connectivity check</h3>
+<p>The Generate window has a <strong>Check connectivity</strong> button. It walks each line
+and reports three things:</p>
+<table>
+  <tr><th>Finding</th><th>Meaning</th></tr>
+  <tr><td><strong>Island</strong></td><td>An element carrying the line's value but not connected to the rest of it. Always an error — usually a mis-tagged fitting or a broken connection.</td></tr>
+  <tr><td><strong>Split group</strong></td><td>Two separate networks sharing one value. An error, and the dangerous one: it produces a drawing showing two unrelated runs, and it looks plausible.</td></tr>
+  <tr><td><strong>Open end</strong></td><td>A connector leading nowhere. Usually correct; listed for you to check, not flagged as a problem.</td></tr>
+</table>
+<p>Findings are selected in the model so you can see them straight away. Worth running on a
+model you have not generated or exported before.</p>
+
+<h2 id="iso3d">6. 3D isometrics</h2>
+<p><strong>Generate ISO</strong> lists every pipeline it found, with the number of elements
+in each. Tick as many as you like and generate them in one pass — there is no need to work
+line by line. <em>Select all</em> and <em>Clear</em> handle the whole list.</p>
+<p>Each row has a <strong>magnifier button</strong> that selects and zooms to that line in
+the model, so you can confirm you are about to generate the right thing.</p>
+<p><strong>Include directly-connected mechanical equipment</strong> pulls in tanks, pumps and
+similar that a line runs into, so the drawing shows what it connects to. Leave it off for a
+drawing of the pipework alone.</p>
+<p><strong>Regenerate</strong> works the same way but lists only the lines that already have
+views, and rebuilds them after the model has changed.</p>
+<p><strong>Tags</strong> annotates the generated views, and <strong>Place on Sheets</strong>
+lays them out using the title block and fit margin from Settings.</p>
+<p>This route needs nothing beyond Revit, and is the right choice if you have no Plant 3D
+entitlement.</p>
+
+<h2 id="pcf">7. PCF export</h2>
+<p>Export runs in three steps.</p>
+<ol>
+  <li><strong>Choose the lines.</strong> The same picker as Generate, with the same magnifier
+      buttons and the same mechanical-equipment option.</li>
+  <li><strong>Fill the title block values.</strong> See <a href="#titleblock">section 11</a>.
+      These are remembered, so on later exports this step is a confirmation.</li>
+  <li><strong>Export.</strong> One PCF file per line, named after the line.</li>
+</ol>
+<p>Then in Plant 3D, open your project and run <strong>PCF to Iso</strong> from the Isos tab.
+The drawings appear in the project's isometric output folder.</p>
+<p>PCF is self-contained: it carries the geometry, sizes, symbol codes and joint types, so
+Plant 3D does not need a matching specification or catalogue to render it.</p>
+<p>The export report lists, per line, what was found and any warnings. Read the warnings —
+they name the family and the code involved.</p>
+
+<h2 id="families">8. Preparing your families</h2>
+<p>ISODocks works out most of what it needs from Revit itself. What it cannot know is which
+<em>symbol</em> to draw and which <em>joint</em> to show, because Revit has no equivalent
+of either. Two codes supply them.</p>
+<table>
+  <tr><th>Code</th><th>Meaning</th><th>Examples</th></tr>
+  <tr><td><code>ISO_SKEY</code></td><td>Which symbol the isometric draws for this component.</td><td><code>ELBW</code> elbow · <code>TEBW</code> tee · <code>VBFL</code> ball valve · <code>VYFL</code> butterfly valve</td></tr>
+  <tr><td><code>ISO_ENDTYPE</code></td><td>Which joint symbol appears where this component meets the pipe.</td><td><code>PPL</code> fusion weld (PE, PP) · <code>BW</code> butt weld · <code>FL</code> flanged · <code>P</code> press fitting · <code>SC</code> threaded · <code>C</code> soldered · <code>GL</code> glued</td></tr>
+</table>
+<p>Add both as <strong>shared parameters, of type Text, bound to Pipe Fittings and Pipe
+Accessories as <em>type</em> parameters</strong>. Type, not instance: the symbol and joint
+are properties of the family type, so setting them once covers every placement.</p>
+<div class="note">
+  <p>A library that carries these two parameters needs no further configuration. ISODocks
+  reads them and exports correctly with an empty mapping file.</p>
+</div>
+<p>Where a family does not carry them, ISODocks falls back — first to the project's mapping
+file, then to a sensible default derived from the Revit part type. It warns rather than
+guessing when nothing fits.</p>
+
+<h2 id="mapping">9. The mapping window</h2>
+<p>The mapping window lists every fitting and accessory family type in your model and shows
+where each one's codes come from.</p>
+<table>
+  <tr><th>Source</th><th>Meaning</th></tr>
+  <tr><td><code>family</code></td><td>From the family's own parameter. Locked here — change it in the family.</td></tr>
+  <tr><td><code>file</code></td><td>From this project's mapping file.</td></tr>
+  <tr><td><code>default</code></td><td>Derived from the Revit part type. Nothing to do unless it is wrong.</td></tr>
+  <tr><td><code>MISSING</code></td><td>No code from any source. Only accessories reach this state, because Revit gives them no part type.</td></tr>
+</table>
+<p>Use the search box and the part type filter to narrow the list, select several rows and
+apply a code to all of them at once, or tick <em>Needs a SKEY only</em> to see just the
+gaps.</p>
+<p>If you have set a Plant 3D project folder, the dropdowns offer only codes that project
+can actually draw, and the <strong>Problem</strong> column tells you straight away if a code
+will not resolve.</p>
+<p>The mapping is saved next to your model — next to the <em>central</em> model on a
+workshared project, so your whole team shares one file. A new project starts from the
+defaults built up in previous projects; after that the two are independent.</p>
+
+<h2 id="plant3d">10. Setting up Plant 3D</h2>
+<p>Most PCF problems are Plant 3D configuration rather than anything in the file. Five
+settings catch people out, and every one of them is invisible until the output looks
+wrong.</p>
+<ol>
+  <li><strong>Use a metric project</strong> for metric models. The unit system is fixed when
+      the project is created and cannot be changed afterwards. An imperial project rejects a
+      metric PCF outright — nothing renders and no reason is given.</li>
+  <li><strong>Turn dimensioning on.</strong> It is off in the default iso style.</li>
+  <li><strong>The weld list only appears in the <code>Final</code> style</strong>, not in
+      <code>Check</code>. A missing weld list is usually the style, not the file.</li>
+  <li><strong>Overflow drawings look empty</strong> when the material lists do not spill onto
+      them. That is expected.</li>
+  <li><strong>Where a drawing splits is a style setting</strong>, not something the file
+      controls.</li>
+</ol>
+<div class="note warn">
+  <p><strong>If a symbol is missing from a drawing</strong>, Plant 3D substitutes a
+  placeholder and still reports the run as successful — the detail is in its log, not in the
+  summary. Open the log file from the Isometric Creation Results window; it names the code it
+  could not find. ISODocks warns about these before you export, provided you have set the
+  Plant 3D project folder in Settings.</p>
 </div>
 
-<h2>Who we are</h2>
-<p>ISODocks is developed and published by Spiros Manetakis, Germany. For any question
-about this policy or about your data, contact
-<a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>.</p>
+<h2 id="titleblock">11. Title block values</h2>
+<p>Exporting asks for the values that fill your iso title block — medium, pipe class,
+project name, and whatever else your style defines. The form is built from the style's own
+configuration, so it matches whichever title block you render with.</p>
+<p>Values are remembered for next time and apply to every line in one export; if lines need
+different values, export those lines separately.</p>
+<p>Each PCF file is named after its line, and ISODocks also writes the line name into
+whichever attribute your style maps to <code>LineNumber</code> — which is why that row does
+not appear on the form. Whether it then reaches the sheet depends on your title block having
+a matching attribute definition. If the line name does not appear where you expect it, or
+turns up in the wrong box, that is the style configuration rather than the export: check that
+<code>IsoConfig.xml</code> and the title block in the <code>.dwt</code> still agree.</p>
 
-<h2>Data handled by the add-in</h2>
-<p>ISODocks creates and reads the following, all of it on your own computer or on storage
-you already use for the project:</p>
-<ul>
-  <li>Settings stored inside the Revit project file itself.</li>
-  <li>A component mapping file saved beside your model. On a workshared project this sits
-      next to the central model, so that your team shares one file. Where the model has no
-      writable folder, the mapping is kept in your own user profile folder instead.</li>
-  <li>Title block values saved in the same place as the mapping file.</li>
-  <li>Starting-point defaults kept in your user profile folder.</li>
-  <li>The isometric drawings and PCF files that ISODocks produces, written to the output
-      folder you choose.</li>
-</ul>
-<p>None of this is uploaded, backed up, analysed, or transmitted to us or to anyone else.
-Where a file is written to a network location, it is because you pointed ISODocks at that
-location.</p>
-<p>ISODocks contains no analytics, no telemetry, and no usage tracking.</p>
-<p>ISODocks reads your AutoCAD Plant 3D project folder, if you configure one, in order to
-match the symbols and title block of the iso style you render with. It reads those files
-only; it does not modify them and does not send their contents anywhere.</p>
-<p>Your project data, drawings, and models are never accessed for any purpose other than
-producing the documentation you request within the application.</p>
+<h2 id="trouble">12. Troubleshooting</h2>
+<table>
+  <tr><th>Situation</th><th>What to check</th></tr>
+  <tr><td>Nothing is found to export</td><td>The driver parameter in Settings, and that your elements carry a value in it.</td></tr>
+  <tr><td>One drawing shows two unrelated runs</td><td>A split group — two networks share one driver value. The connectivity check finds these.</td></tr>
+  <tr><td>A component draws as a placeholder box</td><td>Its symbol code is not one the iso style can draw. Open Mapping and look at the Problem column.</td></tr>
+  <tr><td>Joints look wrong for plastic pipe</td><td>The end type. Fusion-welded PE and PP need <code>PPL</code>, not <code>BW</code>.</td></tr>
+  <tr><td>No weld list on the drawing</td><td>The iso style. Use <code>Final</code>, not <code>Check</code>.</td></tr>
+  <tr><td>The file will not render at all</td><td>Unit system: a metric file needs a metric project.</td></tr>
+  <tr><td>Your teammate has different mappings</td><td>On a cloud-hosted model the mapping cannot sit beside the central file and is kept per user. The save message tells you when this happens.</td></tr>
+  <tr><td>Output looks unchanged after a fix</td><td>Re-run <em>PCF to Iso</em> and reopen the drawing. A stale drawing on screen is the most common false alarm.</td></tr>
+</table>
 
-<h2>License verification</h2>
-<p>When the add-in starts, it verifies that your Autodesk account is licensed to use it.
-To do this it sends your Autodesk user identifier and the app's identifier to the Autodesk
-App Store license service at <code>apps.autodesk.com</code>, which replies whether the
-license is valid. This identifier is an internal Autodesk reference, not your email
-address or name.</p>
-<p>This request goes to Autodesk, not to us. We do not receive it, and no other
-information is included — no project data, no model contents, no file names, no usage
-details. The request is made once per session at start-up.</p>
-<p>The result is stored on your computer so that the add-in continues to work when you are
-offline or the service is unavailable. If verification has not succeeded for 14 days, the
-add-in will ask you to reconnect.</p>
-<p>Autodesk processes this request under its own privacy policy.</p>
+<h2 id="license">13. License verification</h2>
+<p>At start-up ISODocks checks with the Autodesk App Store that your account is licensed. It
+sends your Autodesk user identifier and the app identifier, and nothing else — no model
+data, no file names, no usage information. The result is cached so the add-in keeps working
+offline. If verification has not succeeded for <strong>14 days</strong>, you will be asked to
+reconnect.</p>
+<p>About / Privacy stays available even if verification fails, so you can always read the
+disclosure and reach us. Full detail is in the
+<a href="privacy-isodocks.html">privacy policy</a>.</p>
 
-<h2>Data you send us</h2>
-<p>If you contact us for support, we receive your email address and whatever information
-you choose to include in your message. We use this solely to answer your enquiry and to
-provide support. We do not use it for marketing, and we do not share it with anyone.</p>
-<p>The lawful basis for this processing is our legitimate interest in responding to
-enquiries and supporting our customers (Art. 6(1)(f) GDPR), and where a purchase is
-involved, the performance of a contract (Art. 6(1)(b) GDPR).</p>
-<p>Support correspondence is retained for up to 12 months after the matter is resolved,
-after which it is deleted.</p>
-
-<h2>Data we receive from the Autodesk App Store</h2>
-<p>When you purchase or download ISODocks through the Autodesk App Store, Autodesk
-provides us with information about that transaction, which may include your name and email
-address. We use this only to fulfil the purchase, to provide support, and to meet our
-record-keeping obligations. We do not use it for marketing and we do not share it with
-third parties.</p>
-<p>Records connected with purchases are retained for as long as required by applicable
-German commercial and tax law.</p>
-<p>Please note that the Autodesk App Store, and any payment provider used to complete your
-purchase, process your data under their own privacy policies, which are separate from this
-one.</p>
-
-<h2>Your rights</h2>
-<p>Under the GDPR you have the right to request access to the personal data we hold about
-you, to have it corrected or deleted, to restrict or object to its processing, and to
-receive it in a portable form. You also have the right to lodge a complaint with a data
-protection supervisory authority.</p>
-<p>To exercise any of these rights, write to
-<a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>. We will respond
-within one month.</p>
-
-<h2>Changes to this policy</h2>
-<p>If this policy changes, the updated version will be published at
-<a href="https://dev4revit.github.io/policies/privacy-isodocks.html">this address</a>.</p>
+<h2 id="support">14. Support</h2>
+<p>Questions, problems and feature requests:
+<a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>. It helps to include
+your Revit release, whether the issue is on the 3D ISO or PCF side, and the export report or
+the Plant 3D log if there is one.</p>
 
 <footer>
   <p>dev4revit · Spiros Manetakis ·
   <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a><br>
-  <a href="help-isodocks.html">ISODocks help</a> ·
+  <a href="privacy-isodocks.html">Privacy policy</a> ·
   <a href="../">All products</a></p>
 </footer>
 
