@@ -5,206 +5,350 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>P&amp;ID Link — Help</title>
 <style>
-  html { background: #ffffff; }
-  body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-         max-width: 820px; margin: 0 auto; padding: 40px 24px 64px;
-         line-height: 1.65; color: #1a1a1a !important; background: #ffffff; }
-  p, li, td, h3 { color: #1a1a1a; }
-  h1 { color: #1F3A5F; font-size: 2em; margin: 0 0 4px; }
-  .sub { color: #2E5A88; font-size: 1.05em; margin: 0 0 6px; }
-  .updated { color: #666; font-size: 0.9em; margin-bottom: 28px; }
-  h2 { color: #1F3A5F; font-size: 1.35em; margin-top: 42px;
-       border-bottom: 1px solid #d8e2ec; padding-bottom: 6px; }
-  h3 { color: #2E5A88; font-size: 1.08em; margin-top: 26px; margin-bottom: 6px; }
-  a { color: #2E5A88; }
-  table { border-collapse: collapse; width: 100%; margin: 14px 0 20px; font-size: 0.95em; }
-  th { background: #1F3A5F; color: #fff; text-align: left; padding: 8px 10px; font-weight: 600; }
-  td { border: 1px solid #d8e2ec; padding: 8px 10px; vertical-align: top; }
-  tr:nth-child(even) td { background: #f5f9fc; }
-  td.cmd { font-family: Consolas, monospace; white-space: nowrap; }
-  .note { background: #fbf0da; border: 1px solid #8a5a00; border-radius: 4px;
-          padding: 12px 16px; margin: 18px 0; color: #6b4600; }
-  .note strong { color: #8a5a00; }
-  nav { background: #f5f9fc; border: 1px solid #d8e2ec; border-radius: 6px;
-        padding: 16px 22px; margin-bottom: 8px; }
-  nav ol { margin: 6px 0 0; padding-left: 22px; }
-  nav li { margin: 3px 0; }
-  ul.plain { margin: 8px 0 16px; }
-  ul.plain li { margin: 5px 0; }
-  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid #ddd;
-           color: #666; font-size: 0.92em; }
+  :root { --accent:#1F4E79; --rule:#C8D3DF; --light:#EDF2F7; --grey:#555; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:0 1rem 4rem;
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+         line-height:1.6; color:#222; }
+  .wrap { max-width:820px; margin:0 auto; }
+  header { border-bottom:3px solid var(--accent); padding:2.2rem 0 1.1rem; margin-bottom:1.6rem; }
+  h1 { color:var(--accent); margin:0 0 .3rem; font-size:2rem; }
+  .sub { color:var(--grey); margin:0; }
+  h2 { color:var(--accent); margin:2.2rem 0 .6rem; font-size:1.25rem;
+       border-bottom:1px solid var(--rule); padding-bottom:.3rem; }
+  h3 { color:#2C3E50; margin:1.4rem 0 .4rem; font-size:1.02rem; }
+  table { border-collapse:collapse; width:100%; margin:.8rem 0; font-size:.94rem; }
+  th { background:var(--accent); color:#fff; text-align:left; padding:.5rem .6rem; }
+  td { border:1px solid var(--rule); padding:.5rem .6rem; vertical-align:top; }
+  tr:nth-child(even) td { background:#F7F9FB; }
+  .note { background:var(--light); border:1px solid var(--rule); border-radius:4px;
+          padding:.9rem 1rem; margin:1.1rem 0; }
+  .note strong { display:block; margin-bottom:.3rem; }
+  code { background:#F0F3F6; padding:.12rem .35rem; border-radius:3px;
+         font-family:ui-monospace,Consolas,monospace; font-size:.92em; }
+  nav.toc { background:#FAFBFC; border:1px solid var(--rule); border-radius:4px;
+            padding:1rem 1.2rem; margin-bottom:1rem; }
+  nav.toc ol { margin:.4rem 0 0; padding-left:1.3rem; }
+  nav.toc a { color:var(--accent); text-decoration:none; }
+  nav.toc a:hover { text-decoration:underline; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+           color:var(--grey); font-size:.9rem; }
+  a { color:var(--accent); }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<h1>P&amp;ID Link</h1>
-<p class="sub">Live bidirectional linking between AutoCAD Plant 3D and Autodesk Revit</p>
-<p class="updated">User help &middot; Supports Revit and AutoCAD Plant 3D 2024–2027</p>
+<header>
+  <h1>P&amp;ID Link</h1>
+  <p class="sub">Bidirectional linking between AutoCAD Plant 3D P&amp;ID components and Revit elements</p>
+</header>
 
-<nav>
-<strong>Contents</strong>
-<ol>
-  <li><a href="#overview">Overview</a></li>
-  <li><a href="#installation">Installation</a></li>
-  <li><a href="#ribbon">The ribbon at a glance</a></li>
-  <li><a href="#shared">Before you start — shared parameters</a></li>
-  <li><a href="#linking">Linking components</a></li>
-  <li><a href="#list">The Element List</a></li>
-  <li><a href="#mapping">Mapping and syncing attribute values</a></li>
-  <li><a href="#unlink">Unlinking</a></li>
-  <li><a href="#delete">Deleting components (self-heal)</a></li>
-  <li><a href="#licensing">Licensing</a></li>
-  <li><a href="#trouble">Troubleshooting</a></li>
-  <li><a href="#categories">Appendix — linkable Revit categories</a></li>
-  <li><a href="#support">Support</a></li>
-</ol>
+<p>P&amp;ID Link installs as a pair of add-ins: one for Revit and one for AutoCAD Plant 3D.
+Both must be installed, and both applications should be open at the same time for linking
+and navigation to work.</p>
+
+<nav class="toc">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#req">System requirements</a></li>
+    <li><a href="#install">Installation</a></li>
+    <li><a href="#license">Licensing and license verification</a></li>
+    <li><a href="#ribbons">The ribbons</a></li>
+    <li><a href="#first">Creating your first link</a></li>
+    <li><a href="#nav">Navigating between linked objects</a></li>
+    <li><a href="#mapping">Parameter mapping and sync</a></li>
+    <li><a href="#list">The Element List</a></li>
+    <li><a href="#team">Working in a team</a></li>
+    <li><a href="#trouble">Troubleshooting and support</a></li>
+  </ol>
 </nav>
 
-<h2 id="overview">1. Overview</h2>
-<p>P&amp;ID Link connects your AutoCAD Plant 3D P&amp;ID data with your Autodesk Revit model and keeps the two synchronised as the project develops. Rather than a one-time export, each connection is a persistent, two-way link that you can sync again whenever the data changes.</p>
-<p>The add-in installs into both Revit and AutoCAD Plant 3D and adds a <strong>P&amp;ID Link</strong> ribbon tab to each. You work from whichever application is convenient: pick a component in one, pick its counterpart in the other, and link them. From that point on you can review links, jump between partnered components, and carry Plant 3D attribute values across into Revit shared parameters.</p>
+<h2 id="intro">1. Introduction</h2>
+<p>P&amp;ID Link connects P&amp;ID components in AutoCAD Plant 3D drawings to elements in a
+Revit model. Once two objects are linked, the pair is remembered permanently, and you can move
+between them, keep track of which objects are already linked, and copy P&amp;ID data into Revit
+parameters.</p>
 
-<h3>Core ideas</h3>
-<ul class="plain">
-  <li><strong>A link joins one Plant 3D P&amp;ID component to one Revit MEP element.</strong> Links persist between sessions.</li>
-  <li><strong>Both applications show an Element List</strong> — an overview of what is and is not linked, with filtering and click-to-zoom.</li>
-  <li><strong>Attribute values flow from Plant 3D into Revit.</strong> You map Plant 3D attributes to Revit shared parameters, then sync.</li>
-  <li><strong>Only linked components take part</strong> in export and sync, so you move exactly the data you intend.</li>
+<h3>Typical uses</h3>
+<ul>
+  <li>Keeping a P&amp;ID and a Revit model in agreement about the same equipment.</li>
+  <li>Carrying tag numbers, service descriptions, line numbers and manufacturer data into the
+      model without retyping them.</li>
+  <li>Checking, at a glance, which components have not yet been coordinated.</li>
 </ul>
 
-<h2 id="installation">2. Installation</h2>
-<p>If you obtained P&amp;ID Link through the Autodesk App Store, the installer is provided by Autodesk and places the add-in automatically for every supported version found on your machine. Run it and restart Revit and AutoCAD Plant 3D.</p>
-<p>After installation, open either application and confirm the <strong>P&amp;ID Link</strong> tab appears on the ribbon. The add-in loads automatically at start-up; there is nothing to load manually.</p>
-<div class="note"><strong>Plant 3D only.</strong> On the AutoCAD side, P&amp;ID Link is intended for AutoCAD Plant 3D. It will not add its ribbon to plain AutoCAD or to other AutoCAD-based products.</div>
+<h3>What is linked</h3>
+<p>On the Plant 3D side, P&amp;ID Link works with <strong>P&amp;ID components</strong> — the
+objects that carry data in the project database. Pipe and signal lines are excluded where
+components are listed.</p>
+<p>On the Revit side it works with these categories: Mechanical Equipment, Pipe Accessories,
+Electrical Equipment, Electrical Fixtures, Data Devices, Duct Accessories, Fire Alarm Devices,
+Lighting Devices, Lighting Fixtures, Mechanical Control Devices, Plumbing Equipment, Plumbing
+Fixtures, Security Devices, Sprinklers and Telephone Devices.</p>
 
-<h2 id="ribbon">3. The ribbon at a glance</h2>
+<div class="note">
+  <strong>Plain AutoCAD</strong>
+  P&amp;ID Link requires AutoCAD Plant 3D, because it reads the P&amp;ID project database.
+  To link attributed blocks in plain AutoCAD or its toolsets, use our separate product, CAD Link.
+</div>
 
-<h3>Revit — P&amp;ID Link tab</h3>
+<h2 id="req">2. System requirements</h2>
 <table>
-<tr><th style="width:24%">Button</th><th>What it does</th></tr>
-<tr><td>Pick Element</td><td>Remember the currently selected Revit element as one half of a link.</td></tr>
-<tr><td>Link</td><td>Link the remembered Revit element to the component remembered in Plant 3D.</td></tr>
-<tr><td>Unlink</td><td>Break the link between the picked pair and clear the mapped Revit parameters.</td></tr>
-<tr><td>Element List</td><td>Open the overview of all links for this project.</td></tr>
-<tr><td>Param Mapping</td><td>Pair each Plant 3D attribute with a Revit shared parameter.</td></tr>
-<tr><td>Sync Params</td><td>Pull the exported Plant 3D values onto the mapped parameters of linked elements.</td></tr>
-<tr><td>About / Privacy</td><td>Show version and support details, and the full privacy policy.</td></tr>
+  <tr><th>Requirement</th><th>Details</th></tr>
+  <tr><td>Autodesk Revit</td><td>2024, 2025, 2026 or 2027</td></tr>
+  <tr><td>AutoCAD Plant 3D</td><td>2024, 2025, 2026 or 2027, with a Plant 3D project open</td></tr>
+  <tr><td>Operating system</td><td>Windows 64-bit</td></tr>
+  <tr><td>Language</td><td>English</td></tr>
+  <tr><td>Account</td><td>An Autodesk account signed in to both applications</td></tr>
+  <tr><td>Internet</td><td>Required occasionally for license verification</td></tr>
 </table>
+<p>The Revit release and the Plant 3D release do not have to match. For example, Revit 2026 and
+Plant 3D 2024 can be linked, as long as P&amp;ID Link is installed for both.</p>
 
-<h3>AutoCAD Plant 3D — P&amp;ID Link tab</h3>
-<table>
-<tr><th style="width:24%">Button</th><th>What it does</th></tr>
-<tr><td>Pick</td><td>Remember the currently selected Plant 3D component as one half of a link.</td></tr>
-<tr><td>Link</td><td>Link the remembered Plant 3D component to the element remembered in Revit.</td></tr>
-<tr><td>Unlink</td><td>Break the link between the picked pair.</td></tr>
-<tr><td>Export Attributes</td><td>Export the attribute names of the current sheet — used to build the mapping in Revit.</td></tr>
-<tr><td>Export Values</td><td>Export the attribute values of linked components on the current sheet.</td></tr>
-<tr><td>Export All</td><td>Export attribute values of linked components from every sheet, including closed sheets.</td></tr>
-<tr><td>Element List</td><td>Open the overview of all links for this drawing.</td></tr>
-<tr><td>About / Privacy</td><td>Show version and support details, and the full privacy policy.</td></tr>
-</table>
+<h2 id="install">3. Installation</h2>
+<ol>
+  <li>Close Revit and AutoCAD Plant 3D.</li>
+  <li>Run the installer obtained from the Autodesk App Store listing and follow the prompts.</li>
+  <li>Start Revit or Plant 3D. The add-in loads automatically.</li>
+</ol>
+<p>In Revit a ribbon tab named <strong>P&amp;ID Link</strong> appears with the Linking, Overview,
+Mapping and Info panels. In Plant 3D a ribbon tab appears with a single Link panel.</p>
+<p>To uninstall, use Windows Settings &rsaquo; Apps. Saved links and mappings are not removed by
+the uninstaller.</p>
 
-<h2 id="shared">4. Before you start — shared parameters</h2>
-<p>P&amp;ID Link copies Plant 3D attribute values into Revit <strong>shared parameters</strong>. It does not create these parameters for you — they must already exist in your Revit project before mapping will work. Setting them up correctly once, at the start, avoids the most common difficulties.</p>
+<h2 id="license">4. Licensing and license verification</h2>
+<p>P&amp;ID Link is licensed per Autodesk account. The license is tied to the Autodesk account
+that acquired the app from the Autodesk App Store, so you should be signed in to that account in
+Revit and Plant 3D.</p>
 
-<h3>Two prerequisites</h3>
-<p><strong>1. Create and bind the shared parameters.</strong> Using Revit's Shared Parameters and Project Parameters tools, create the parameters you want to receive Plant 3D data and bind them to the relevant categories (for example Mechanical Equipment, Pipe Accessories, and the other categories listed in the appendix).</p>
-<p><strong>2. Place at least one element that carries all of them.</strong> Revit only exposes a shared parameter once an element using it exists in the model. Place at least one element that carries every shared parameter you intend to map, so that P&amp;ID Link can see them all when you open Param Mapping. Without this, some parameters will not appear in the mapping list.</p>
-<div class="note"><strong>Why this matters.</strong> If a parameter you expect is missing from the mapping dialog, it is almost always one of these two steps: the parameter is not bound to the element's category, or no placed element yet carries it.</div>
-
-<h2 id="linking">5. Linking components</h2>
-<p>A link is made by remembering one component in each application, then confirming the link. You can start from either side.</p>
-<p><strong>Step 1 — Pick in Plant 3D.</strong> Select the P&amp;ID component and click <strong>Pick</strong> on the P&amp;ID Link tab. The component is now remembered.</p>
-<p><strong>Step 2 — Pick in Revit.</strong> Select the corresponding MEP element and click <strong>Pick Element</strong>. That element is now remembered.</p>
-<p><strong>Step 3 — Link.</strong> Click <strong>Link</strong> in either application. The two remembered components are joined, and the picks are cleared ready for the next pair.</p>
-<p>The order does not matter — you may pick in Revit first and Plant 3D second. What matters is that one component is remembered on each side before you click Link.</p>
-<div class="note"><strong>Which Revit elements can be linked.</strong> Links are supported for the major MEP equipment, fixture, device and accessory categories — see the full list in the appendix. Linear elements such as pipes and ducts are not linkable.</div>
-
-<h2 id="list">6. The Element List</h2>
-<p>Each application provides an Element List — an overview window listing the relevant components and showing, at a glance, which are linked. Open it from the <strong>Element List</strong> button on the ribbon.</p>
-
-<h3>What it shows</h3>
-<ul class="plain">
-  <li>A <strong>Link</strong> column marking which components are currently linked.</li>
-  <li>Descriptive columns (such as Tag, Type, Category and Description) to help you identify each component.</li>
-  <li>A count of total components and how many are linked.</li>
-</ul>
-
-<h3>Filtering and zooming</h3>
-<ul class="plain">
-  <li><strong>Click any column header</strong> to filter the list by that column's values. A filtered header is highlighted, and <strong>Clear Filters</strong> resets it.</li>
-  <li><strong>Click any row to zoom</strong> to that component. From Revit, the view zooms to the Plant 3D partner; from Plant 3D, to the Revit partner — a quick way to locate a component's counterpart in the other application.</li>
-</ul>
-
-<h2 id="mapping">7. Mapping and syncing attribute values</h2>
-<p>Once components are linked, P&amp;ID Link can carry Plant 3D attribute values into the mapped Revit shared parameters. This is a three-part workflow: export the attribute names, build the mapping, then export values and sync.</p>
-
-<h3>One-time setup</h3>
-<p><strong>1. Export the attribute names (Plant 3D).</strong> Click <strong>Export Attributes</strong>. This makes the Plant 3D attribute names available so you can map against them in Revit. Repeat this only when new attributes are introduced.</p>
-<p><strong>2. Build the mapping (Revit).</strong> Open <strong>Param Mapping</strong>. For each Plant 3D attribute you want to carry across, choose the Revit shared parameter it should populate, and click <strong>Add / Update</strong>. Remove a pairing with <strong>Remove selected</strong>.</p>
-
-<h3>Each time you sync</h3>
-<p><strong>3. Export the values (Plant 3D).</strong> Click <strong>Export Values</strong> for the current sheet, or <strong>Export All</strong> to cover every sheet including closed ones. Only the values of <strong>linked</strong> components are exported.</p>
-<p><strong>4. Sync (Revit).</strong> Click <strong>Sync Params</strong>. The exported values are written onto the mapped shared parameters of the linked Revit elements. A summary reports how many elements and parameters were updated, and lists any that could not be written.</p>
-<div class="note"><strong>Read-only parameters.</strong> Some Revit parameters are calculated by Revit itself (for example Area) and cannot be written by any add-in. If you map an attribute to such a parameter, the sync summary will report it as read-only and skip it. To store an imported value, map it to a writable shared parameter with a different name.</div>
-
-<h2 id="unlink">8. Unlinking</h2>
-<p>To remove a link, remember <strong>both</strong> halves of the pair — pick the element in Revit and its partner in Plant 3D — then click <strong>Unlink</strong> in either application.</p>
-<p>Unlink acts only when both sides are picked and the two picks belong to the same link. If they do not, the operation is refused and nothing is changed, so you cannot accidentally break the wrong link. When a link is removed from the Revit side, the mapped Revit parameters on that element are cleared, leaving no orphaned values behind.</p>
-
-<h2 id="delete">9. Deleting components (self-heal)</h2>
-<p>If you delete a linked component in either application, its link becomes stale. P&amp;ID Link cleans these up automatically: <strong>open the Element List in the application where you deleted the component</strong>, and any link whose component no longer exists is removed. Opening the other application's Element List then reflects the change.</p>
-<p>A simple rule to remember: <strong>after deleting, open the Element List on that side.</strong> That is the moment each side re-checks reality and tidies up.</p>
-
-<h2 id="licensing">10. Licensing</h2>
-<p>P&amp;ID Link is a one-time purchase with a perpetual license. Your purchase includes all updates within this version and support for Revit and AutoCAD Plant 3D 2024–2027. There is no recurring subscription.</p>
-<p>When obtained through the Autodesk App Store, access is tied to the Autodesk account that purchased the app. Sign in to that account in Revit and AutoCAD Plant 3D and the add-in loads normally — there is nothing to activate and no license key to enter.</p>
+<h3>How verification works</h3>
+<p>When the add-in starts, it contacts the Autodesk licensing service to confirm that your
+signed-in account is entitled to use P&amp;ID Link. The add-in sends only your Autodesk user
+identifier and the application identifier of P&amp;ID Link. <strong>No drawing data, model data,
+file names or personal documents are transmitted.</strong></p>
 
 <h3>Working offline</h3>
-<p>At start-up the add-in checks your license with the Autodesk App Store. The result is remembered on your computer, so you can continue working when you are offline or the service is unavailable. If the license has not been verified for 14 days, the add-in will ask you to reconnect and sign in once.</p>
-<div class="note"><strong>If you are asked to sign in.</strong> Make sure you are signed in to Revit or AutoCAD Plant 3D with the same Autodesk account that purchased P&amp;ID Link. If the account is correct and the message persists, contact <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>.</div>
+<ul>
+  <li>After a successful check, P&amp;ID Link continues to work without an internet connection
+      for <strong>30 days</strong>.</li>
+  <li>From five days before that period ends, a reminder appears at start-up.</li>
+  <li>If the service cannot be reached and the 30 days have passed, the commands stop working
+      until the next successful verification.</li>
+  <li>If the service replies that the account is not entitled, the commands stop working
+      immediately.</li>
+</ul>
+<p>When P&amp;ID Link is blocked, the <strong>About / Privacy</strong> button remains available,
+so you can always read the privacy information and find the support address.</p>
+<div class="note">
+  <strong>Privacy</strong>
+  The full privacy policy, including the license verification described above, is published at
+  <a href="https://dev4revit.github.io/policies/privacy-pidlink.html">privacy-pidlink.html</a>.
+</div>
 
-<h2 id="trouble">11. Troubleshooting</h2>
+<h2 id="ribbons">5. The ribbons</h2>
+<h3>Revit</h3>
 <table>
-<tr><th style="width:34%">Symptom</th><th>Likely cause and fix</th></tr>
-<tr><td>The P&amp;ID Link tab does not appear.</td><td>Restart the application after installation. On the AutoCAD side, confirm you are in AutoCAD Plant 3D, not plain AutoCAD.</td></tr>
-<tr><td>A shared parameter is missing from Param Mapping.</td><td>The parameter is not bound to the element's category, or no placed element yet carries it. See section 4.</td></tr>
-<tr><td>Sync reports a parameter as read-only.</td><td>The target is a Revit-calculated parameter (such as Area). Map to a writable shared parameter with a different name.</td></tr>
-<tr><td>Unlink does nothing.</td><td>Both sides must be picked and belong to the same link. Pick the element in Revit and its partner in Plant 3D, then Unlink.</td></tr>
-<tr><td>A deleted component still shows as linked.</td><td>Open the Element List on the side where you deleted it; the stale link is then removed. See section 9.</td></tr>
-<tr><td>A message says the license could not be verified.</td><td>Sign in to your Autodesk account using the account that purchased the app, and make sure the machine can reach the internet. See section 10.</td></tr>
-<tr><td>Values do not appear after Sync.</td><td>Confirm you exported values in Plant 3D first (Export Values or Export All), and that the components are linked — only linked components are exported.</td></tr>
+  <tr><th>Button</th><th>Panel</th><th>What it does</th></tr>
+  <tr><td>Pick Element</td><td>Linking</td><td>Remembers the Revit element you select as the current pick.</td></tr>
+  <tr><td>Link</td><td>Linking</td><td>Joins the current Revit pick to the current Plant 3D pick.</td></tr>
+  <tr><td>Unlink</td><td>Linking</td><td>Removes the link and clears the mapped Revit parameters.</td></tr>
+  <tr><td>Element List</td><td>Overview</td><td>Lists model elements, with filters, and shows which are linked.</td></tr>
+  <tr><td>Param Mapping</td><td>Mapping</td><td>Defines which P&amp;ID attribute fills which Revit parameter.</td></tr>
+  <tr><td>Sync Params</td><td>Mapping</td><td>Writes the exported P&amp;ID values into Revit parameters.</td></tr>
+  <tr><td>About / Privacy</td><td>Info</td><td>Version, privacy policy and support information.</td></tr>
 </table>
 
-<h2 id="categories">12. Appendix — linkable Revit categories</h2>
-<p>P&amp;ID Link supports linking for the following Revit MEP categories. Linear elements such as pipes, ducts and conduit are not linkable.</p>
+<h3>AutoCAD Plant 3D</h3>
 <table>
-<tr><th style="width:50%">Category</th><th>Revit identifier</th></tr>
-<tr><td>Mechanical Equipment</td><td class="cmd">OST_MechanicalEquipment</td></tr>
-<tr><td>Pipe Accessories</td><td class="cmd">OST_PipeAccessory</td></tr>
-<tr><td>Electrical Equipment</td><td class="cmd">OST_ElectricalEquipment</td></tr>
-<tr><td>Electrical Fixtures</td><td class="cmd">OST_ElectricalFixtures</td></tr>
-<tr><td>Data Devices</td><td class="cmd">OST_DataDevices</td></tr>
-<tr><td>Duct Accessories</td><td class="cmd">OST_DuctAccessory</td></tr>
-<tr><td>Fire Alarm Devices</td><td class="cmd">OST_FireAlarmDevices</td></tr>
-<tr><td>Lighting Devices</td><td class="cmd">OST_LightingDevices</td></tr>
-<tr><td>Lighting Fixtures</td><td class="cmd">OST_LightingFixtures</td></tr>
-<tr><td>Mechanical Control Devices</td><td class="cmd">OST_MechanicalControlDevices</td></tr>
-<tr><td>Plumbing Equipment</td><td class="cmd">OST_PlumbingEquipment</td></tr>
-<tr><td>Plumbing Fixtures</td><td class="cmd">OST_PlumbingFixtures</td></tr>
-<tr><td>Security Devices</td><td class="cmd">OST_SecurityDevices</td></tr>
-<tr><td>Sprinklers</td><td class="cmd">OST_Sprinklers</td></tr>
-<tr><td>Telephone Devices</td><td class="cmd">OST_TelephoneDevices</td></tr>
+  <tr><th>Button</th><th>Command</th><th>What it does</th></tr>
+  <tr><td>Pick</td><td><code>PRLPICK</code></td><td>Remembers the P&amp;ID component you select as the current pick.</td></tr>
+  <tr><td>Link</td><td><code>PRLLINK</code></td><td>Joins the current Plant 3D pick to the current Revit pick.</td></tr>
+  <tr><td>Unlink</td><td><code>PRLUNLINK</code></td><td>Removes the link between the two current picks.</td></tr>
+  <tr><td>Export Attributes</td><td><code>PRLATTRS</code></td><td>Collects attribute names so Revit can offer them for mapping.</td></tr>
+  <tr><td>Export Values</td><td><code>PRLEXPORTVALUES</code></td><td>Reads values of linked components in the current drawing.</td></tr>
+  <tr><td>Export All</td><td><code>PRLEXPORTALL</code></td><td>Reads values across every drawing referenced by the links.</td></tr>
+  <tr><td>Show Unlinked</td><td><code>PRLSHOWUNLINKED</code></td><td>Selects the components in this drawing that are not linked.</td></tr>
+  <tr><td>About / Privacy</td><td><code>PRLABOUT</code></td><td>Version, privacy policy and support information.</td></tr>
+</table>
+<p>Every Plant 3D button can also be typed at the command line. Pressing F1 on a button opens
+this help page.</p>
+
+<h2 id="first">6. Creating your first link</h2>
+<p>A link always joins exactly one P&amp;ID component to exactly one Revit element. The order of
+the first two steps does not matter.</p>
+<ol>
+  <li><strong>Pick in Plant 3D</strong> — click <strong>Pick</strong> and select a P&amp;ID
+      component. P&amp;ID Link confirms the handle and tells you whether it is already linked.</li>
+  <li><strong>Pick in Revit</strong> — click <strong>Pick Element</strong> and select an element
+      of one of the supported categories.</li>
+  <li><strong>Link</strong> — click <strong>Link</strong> on either side. You only need to click
+      it once, on one of the two sides.</li>
+</ol>
+<div class="note">
+  <strong>One to one</strong>
+  If either object is already part of another link, the earlier link is replaced. This keeps
+  every component and every element in at most one pair.
+</div>
+
+<h3>Removing a link</h3>
+<p>Unlinking is deliberately strict. <strong>Both</strong> sides must be picked, and the two
+picked objects must belong to the same link. If only one side is picked, or the two picks are not
+partners, nothing is removed and a message explains why.</p>
+<p>When a pair is removed, any Revit parameters filled through the mapping are cleared, so no
+stale values are left behind in the model.</p>
+
+<h2 id="nav">7. Navigating between linked objects</h2>
+<ul>
+  <li>Picking a linked component in Plant 3D makes Revit select and zoom to the linked element.</li>
+  <li>Picking a linked element in Revit makes Plant 3D zoom to the linked component.</li>
+  <li>Clicking a row in the Element List does the same.</li>
+</ul>
+
+<h3>Drawings that are not open</h3>
+<p>If the linked component is in a drawing that is not currently open, Plant 3D opens that drawing
+and then zooms to it. If the drawing has been moved or renamed, a message reports that it could
+not be found on disk.</p>
+
+<h3>Elements on closed worksets</h3>
+<p>In a workshared Revit model, if the linked element is on a workset that is not currently open,
+Revit opens that workset in order to show the element. The workset stays open for the rest of the
+session.</p>
+
+<div class="note">
+  <strong>Both applications must be running</strong>
+  Navigation works by passing a short request between the two add-ins. If the other application is
+  closed, the request waits and is carried out the next time that application is running with
+  P&amp;ID Link loaded.
+</div>
+
+<h2 id="mapping">8. Parameter mapping and sync</h2>
+<ol>
+  <li><strong>Export the attribute names</strong> — in Plant 3D click
+      <strong>Export Attributes</strong>. Repeat this if you introduce components with new
+      attributes.</li>
+  <li><strong>Define the mapping in Revit</strong> — click <strong>Param Mapping</strong>, choose
+      a Revit shared parameter and a Plant 3D attribute, click <strong>Add / Update</strong>, then
+      <strong>Save</strong>. Mappings are stored per Revit project.</li>
+  <li><strong>Export the values</strong> — click <strong>Export Values</strong> for the active
+      drawing, or <strong>Export All</strong> to cover every drawing referenced by the links in
+      one pass.</li>
+  <li><strong>Sync in Revit</strong> — click <strong>Sync Params</strong>. A summary reports how
+      many elements and parameters were updated, and lists any that could not be written.</li>
+</ol>
+<div class="note">
+  <strong>Repeating the cycle</strong>
+  Whenever P&amp;ID values change, run Export Values or Export All again and then Sync Params.
+  The mapping itself only has to be defined once per project.
+</div>
+
+<h2 id="list">9. The Element List</h2>
+<p><strong>Element List</strong> in Revit shows the elements of the supported categories with
+their level, family, type, category and object ID. Linked rows are marked with a green dot and
+grouped at the top.</p>
+
+<h3>Filtering</h3>
+<p>Each column header carries a filter arrow. Click it to choose which values to show, in the same
+way as a spreadsheet filter. A search box narrows long lists, and filtered columns are shown in
+blue. <strong>Clear Filters</strong> resets them all. Filters are remembered while the application
+stays open.</p>
+
+<h3>Finding unlinked components</h3>
+<p>On the Plant 3D side, <strong>Show Unlinked</strong> selects every component in the current
+drawing that is not yet linked, so the remaining work is highlighted directly in the drawing.</p>
+
+<h3>Deleted objects</h3>
+<p>If a linked Revit element is deleted, its link is removed automatically so the overview stays
+accurate. In workshared models this clean-up is deliberately conservative: links are kept rather
+than removed when an element cannot be found, so nothing is lost while part of the model is not
+loaded.</p>
+
+<h2 id="team">10. Working in a team</h2>
+<p>P&amp;ID Link supports workshared Revit models. When the model you open is workshared, links
+and mappings are stored in a shared folder beside the central model, so the whole team sees the
+same links.</p>
+
+<h3>Where the shared data is kept</h3>
+<p>A folder named <code>PIDLink_Data</code> is created next to the central model file. It holds
+the links, the parameter mappings and the exported P&amp;ID values. Everyone who uses P&amp;ID
+Link on that project needs read and write access to that folder.</p>
+<p>If the folder cannot be created — for example because the project folder is read-only —
+P&amp;ID Link continues to work using local storage on that computer instead, and the links are
+simply not shared.</p>
+<p>For a model that is not workshared, nothing changes: links stay on your own computer.</p>
+
+<h3>Recommended: one person owns the linking</h3>
+<p>Although links are shared with everyone on a workshared model, it works best if <strong>one
+person is responsible for creating and removing them</strong>. Linking is not merged between
+users: if two people link the same object to different partners, the later link replaces the
+earlier one without warning.</p>
+<p>Everyone on the team can open the Element List, navigate between linked objects and run Sync
+Params. It is only the creating and removing of links that is best kept with one person.</p>
+
+<h3>Points to be aware of</h3>
+<ul>
+  <li>The shared folder is found through the Revit model. On a computer where the Revit model has
+      not been opened yet, the Plant 3D side still uses local storage.</li>
+  <li>Sync Params writes to elements in the shared model, so run it deliberately rather than
+      several people at once. Remember to synchronise with central afterwards.</li>
+  <li>If an element is owned by another user, the parameters that cannot be written are reported
+      in the summary at the end of the sync.</li>
+  <li>Links belonging to elements that cannot be found are never removed automatically in a
+      workshared model.</li>
+</ul>
+
+<div class="note">
+  <strong>Changing between models</strong>
+  The shared location follows the model you have open. Closing a workshared model and opening a
+  single-file model returns P&amp;ID Link to local storage automatically, with no setting to
+  change.
+</div>
+
+<h2 id="trouble">11. Troubleshooting and support</h2>
+<table>
+  <tr><th>Situation</th><th>What to do</th></tr>
+  <tr><td>The ribbon tab is missing in Plant 3D</td>
+      <td>Restart Plant 3D so the ribbon is rebuilt. If it is still missing, reinstall for that release.</td></tr>
+  <tr><td>A command reports that the license could not be verified</td>
+      <td>Connect to the internet, make sure you are signed in to the Autodesk account that acquired P&amp;ID Link, and restart the application.</td></tr>
+  <tr><td>Link says no object is remembered</td>
+      <td>Both sides must be picked before linking. Use Pick in Plant 3D and Pick Element in Revit, then click Link.</td></tr>
+  <tr><td>Unlink says the objects are not linked to each other</td>
+      <td>Unlinking requires both sides picked and both belonging to the same pair.</td></tr>
+  <tr><td>No Plant 3D project is open</td>
+      <td>P&amp;ID Link reads the P&amp;ID project database, so a project must be open, not just a drawing.</td></tr>
+  <tr><td>Sync reports that a parameter is read-only or missing</td>
+      <td>The Revit parameter must exist on the element and be writable. Check that the shared parameter is loaded and bound to the category.</td></tr>
+  <tr><td>Sync finds no values</td>
+      <td>Run Export Values or Export All in Plant 3D first.</td></tr>
+  <tr><td>A colleague cannot see my links</td>
+      <td>Links are shared only for workshared Revit models, through the <code>PIDLink_Data</code> folder beside the central model. Check that everyone has access to that folder.</td></tr>
+  <tr><td>Plant 3D cannot find a linked drawing</td>
+      <td>The drawing was moved or renamed after the link was created. Restore the file, or unlink and link again.</td></tr>
 </table>
 
-<h2 id="support">13. Support</h2>
-<p>For questions, licensing help, or assistance getting started, contact <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>.</p>
-<p>Please include your Autodesk product versions (Revit and AutoCAD Plant 3D) and a short description of what you were doing when any problem occurred. This helps us resolve issues quickly.</p>
-<p><a href="privacy-pidlink.html">Privacy policy</a> &middot; <a href="https://dev4revit.github.io/">dev4revit</a></p>
+<h3>Where your data is stored</h3>
+<p>For a workshared Revit model: <code>&lt;central model folder&gt;\PIDLink_Data</code></p>
+<p>Otherwise, and for your own current selection in either application:
+<code>%LOCALAPPDATA%\PIDLink</code></p>
+<p>Nothing is stored inside the drawing or the model, and nothing is sent anywhere.</p>
+
+<h3>Support</h3>
+<p>Questions, problems and feature requests are welcome by email. Please include the Revit and
+Plant 3D releases you are using and a short description of what you were doing when the problem
+appeared.</p>
+<table>
+  <tr><th></th><th>Contact</th></tr>
+  <tr><td>Email</td><td><a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a></td></tr>
+  <tr><td>Privacy policy</td><td><a href="https://dev4revit.github.io/policies/privacy-pidlink.html">privacy-pidlink.html</a></td></tr>
+  <tr><td>Home</td><td><a href="https://dev4revit.github.io/">dev4revit.github.io</a></td></tr>
+</table>
 
 <footer>
-Spiros Manetakis &middot; <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>
+  &copy; 2026 dev4revit — P&amp;ID Link
 </footer>
 
+</div>
 </body>
 </html>
