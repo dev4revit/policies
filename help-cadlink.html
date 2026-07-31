@@ -61,7 +61,7 @@
 </nav>
 
 <h2 id="overview">1. Overview</h2>
-<p>CAD Link connects attributed blocks in AutoCAD with elements in Autodesk Revit and keeps the two synchronised as the project develops. Rather than a one-time export, each connection is a persistent, two-way link that you can sync again whenever the data changes.</p>
+<p>CAD Link connects attributed blocks in AutoCAD with elements in Autodesk Revit and keeps the two synchronized as the project develops. Rather than a one-time export, each connection is a persistent, two-way link that you can sync again whenever the data changes.</p>
 <p>The add-in installs into both Revit and AutoCAD and adds a <strong>CAD Link</strong> ribbon tab to each. You work from whichever application is convenient: pick a block in one, pick its counterpart in the other, and link them. From that point on you can review links, jump between partnered objects, and carry AutoCAD attribute values across into Revit shared parameters.</p>
 
 <h3>Core ideas</h3>
@@ -71,6 +71,8 @@
   <li><strong>Attribute values flow from AutoCAD into Revit.</strong> You map block attributes to Revit shared parameters, then sync.</li>
   <li><strong>Only linked objects take part</strong> in export and sync, so you move exactly the data you intend.</li>
 </ul>
+
+<div class="note"><strong>Where links are stored.</strong> For a standard Revit project, links and mappings are kept on your own computer. When you work with a <strong>workshared</strong> Revit model, they are kept alongside the central model instead, so that everyone on the team sees the same links. In both cases the data stays within your own systems and is never sent to us.</div>
 
 <h2 id="installation">2. Installation</h2>
 <p>If you obtained CAD Link through the Autodesk App Store, the installer is provided by Autodesk and places the add-in automatically for every supported version found on your machine. Run it and restart Revit and AutoCAD.</p>
@@ -154,13 +156,14 @@
 <h2 id="delete">9. Deleting objects (self-heal)</h2>
 <p>If you delete a linked object in either application, its link becomes stale. CAD Link cleans these up automatically: <strong>open the Element List in the application where you deleted the object</strong>, and any link whose object no longer exists is removed. Opening the other application's Element List then reflects the change.</p>
 <p>A simple rule to remember: <strong>after deleting, open the Element List on that side.</strong> That is the moment each side re-checks reality and tidies up.</p>
+<div class="note"><strong>Workshared Revit models.</strong> Automatic tidying is deliberately switched off in workshared models. Elements on a closed workset are not loaded into your session, and Revit cannot distinguish them from elements that have genuinely been deleted — so removing links automatically would risk deleting links that the rest of your team still needs. In a workshared model, remove the link to a deleted element yourself with <strong>Unlink</strong>.</div>
 
 <h2 id="licensing">10. Licensing</h2>
-<p>CAD Link is a one-time purchase with a perpetual . Your purchase includes all updates within this version and support for Revit and AutoCAD 2024–2027. There is no recurring subscription.</p>
-<p>When obtained through the Autodesk App Store, access is tied to the Autodesk account that purchased the app. Sign in to that account in Revit and AutoCAD and the add-in loads normally — there is nothing to activate and no  key to enter.</p>
+<p>CAD Link is a one-time purchase with a perpetual license. Your purchase includes all updates within this version and support for Revit and AutoCAD 2024–2027. There is no recurring subscription.</p>
+<p>When obtained through the Autodesk App Store, access is tied to the Autodesk account that purchased the app. Sign in to that account in Revit and AutoCAD and the add-in loads normally — there is nothing to activate and no license key to enter.</p>
 
 <h3>Working offline</h3>
-<p>At start-up the add-in checks your  with the Autodesk App Store. The result is remembered on your computer, so you can continue working when you are offline or the service is unavailable. If the  has not been verified for 14 days, the add-in will ask you to reconnect and sign in once.</p>
+<p>At start-up the add-in checks your license with the Autodesk App Store. The result is remembered on your computer, so you can continue working when you are offline or the service is unavailable. If the license has not been verified for 14 days, the add-in will ask you to reconnect and sign in once.</p>
 <div class="note"><strong>If you are asked to sign in.</strong> Make sure you are signed in to Revit or AutoCAD with the same Autodesk account that purchased CAD Link. If the account is correct and the message persists, contact <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>.</div>
 
 <h2 id="trouble">11. Troubleshooting</h2>
@@ -170,8 +173,8 @@
 <tr><td>A shared parameter is missing from Param Mapping.</td><td>The parameter is not bound to the element's category, or no placed element yet carries it. See section 4.</td></tr>
 <tr><td>Sync reports a parameter as read-only.</td><td>The target is a Revit-calculated parameter (such as Area). Map to a writable shared parameter with a different name.</td></tr>
 <tr><td>Unlink does nothing.</td><td>Both sides must be picked and belong to the same link. Pick the element in Revit and its partner block in AutoCAD, then Unlink.</td></tr>
-<tr><td>A deleted object still shows as linked.</td><td>Open the Element List on the side where you deleted it; the stale link is then removed. See section 9.</td></tr>
-<tr><td>A message says the  could not be verified.</td><td>Sign in to your Autodesk account using the account that purchased the app, and make sure the machine can reach the internet. See section 10.</td></tr>
+<tr><td>A deleted object still shows as linked.</td><td>Open the Element List on the side where you deleted it; the stale link is then removed. In a workshared Revit model this tidying is switched off by design — use Unlink instead. See section 9.</td></tr>
+<tr><td>A message says the license could not be verified.</td><td>Sign in to your Autodesk account using the account that purchased the app, and make sure the machine can reach the internet. See section 10.</td></tr>
 <tr><td>Values do not appear after Sync.</td><td>Confirm you exported values in AutoCAD first (Export Values), and that the blocks are linked — only linked blocks are exported.</td></tr>
 </table>
 
