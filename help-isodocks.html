@@ -90,6 +90,7 @@
     <li><a href="#ribbon">The ribbon</a></li>
     <li><a href="#settings">Settings</a></li>
     <li><a href="#tagging">Tagging your pipelines</a></li>
+    <li><a href="#autotag">Tagging as you draw</a></li>
     <li><a href="#iso3d">3D isometrics</a></li>
     <li><a href="#pcf">PCF export</a></li>
     <li><a href="#families">Preparing your families</a></li>
@@ -154,6 +155,7 @@ file, so they travel with it.</p>
 <table>
   <tr><th>Setting</th><th>Notes</th></tr>
   <tr><td>Driver parameter</td><td>The parameter whose value identifies each pipeline. Elements sharing a value form one line. Required.</td></tr>
+  <tr><td>Auto-tag new elements</td><td>A value written into the driver parameter as you draw, so you do not have to tag by hand. <code>OFF</code> disables it. See <a href="#autotag">section 6</a>.</td></tr>
   <tr><td>View template</td><td>Applied to the generated 3D isometric views.</td></tr>
   <tr><td>Title block</td><td>Used when placing those views on sheets.</td></tr>
   <tr><td>Sheet fit margin</td><td>How much of the title block a view fills, between 0.50 and 0.95.</td></tr>
@@ -204,6 +206,20 @@ supports. A hanger family that is <em>not</em> declared is treated as an ordinar
 which puts a joint in the drawing where there is none.</p>
 <p>Hangers need no driver parameter value of their own.</p>
 
+<h3 id="taps">Branch connections</h3>
+<p>Where a smaller line branches off a larger one, the larger pipe must be
+<strong>split at the branch</strong> so the branch fitting sits between two pipes.</p>
+<p>Revit lets you place a spigot or tap fitting against a pipe that runs through in one
+piece. That models correctly and looks right in 3D, but ISODocks cannot express it: the
+branch is written as a separate run and Plant 3D draws it on its own sheet, reporting a
+disconnect.</p>
+<div class="note warn">
+  <p><strong>If a branch appears on a drawing of its own</strong>, check whether the header
+  it comes off is one continuous pipe. Split it at the branch point and export again.</p>
+</div>
+<p>A tee, or any fitting placed so the pipe is divided at it, needs nothing special — this
+applies only to fittings set onto an undivided pipe.</p>
+
 <h3>Connectivity check</h3>
 <p>The Generate window has a <strong>Check connectivity</strong> button. It walks each line
 and reports three things:</p>
@@ -216,7 +232,41 @@ and reports three things:</p>
 <p>Findings are selected in the model so you can see them straight away. Worth running on a
 model you have not generated or exported before.</p>
 
-<h2 id="iso3d">6. 3D isometrics</h2>
+<h2 id="autotag">6. Tagging as you draw</h2>
+<p>Setting the driver parameter on every element by hand is the slowest part of preparing a
+model. <strong>Auto-tag</strong> does it as you work.</p>
+<p>In Settings, next to the driver parameter, choose or type a value. From then on, every
+pipe, fitting and accessory you place is given that value. Set it back to <code>OFF</code>
+when you are done.</p>
+<p>Three rules govern it, and they follow from one principle: <em>ISODocks never overwrites
+a value that already exists.</em></p>
+<table>
+  <tr><th>Situation</th><th>What happens</th></tr>
+  <tr>
+    <td>You place something into an existing line</td>
+    <td>It inherits that line's value, not the one in the field. A valve cut into PL5 becomes
+        PL5 even if the field says PL2.</td>
+  </tr>
+  <tr>
+    <td>You place something in open space</td>
+    <td>It takes the value from the field. If you later connect it to a different line, the
+        original value stays — correct it by hand.</td>
+  </tr>
+  <tr>
+    <td>You place something that joins two lines</td>
+    <td>It takes the value from the field, and ISODocks warns you so you can check.</td>
+  </tr>
+  <tr>
+    <td>You copy or paste tagged elements</td>
+    <td>Their values are kept. <strong>Set auto-tag to OFF before pasting elements that
+        already carry line values you want to preserve</strong> — pasted elements without a
+        value would otherwise be given the current one.</td>
+  </tr>
+</table>
+<p>Auto-tag is stored with the project, so it is remembered between sessions. It is worth
+switching it off when you finish a run of drawing.</p>
+
+<h2 id="iso3d">7. 3D isometrics</h2>
 <p><strong>Generate ISO</strong> lists every pipeline it found, with the number of elements
 in each. Tick as many as you like and generate them in one pass — there is no need to work
 line by line. <em>Select all</em> and <em>Clear</em> handle the whole list.</p>
@@ -232,7 +282,7 @@ lays them out using the title block and fit margin from Settings.</p>
 <p>This route needs nothing beyond Revit, and is the right choice if you have no Plant 3D
 entitlement.</p>
 
-<h2 id="pcf">7. PCF export</h2>
+<h2 id="pcf">8. PCF export</h2>
 <p>Export runs in three steps.</p>
 <ol>
   <li><strong>Choose the lines.</strong> The same picker as Generate, with the same magnifier
@@ -248,7 +298,7 @@ Plant 3D does not need a matching specification or catalogue to render it.</p>
 <p>The export report lists, per line, what was found and any warnings. Read the warnings —
 they name the family and the code involved.</p>
 
-<h2 id="families">8. Preparing your families</h2>
+<h2 id="families">9. Preparing your families</h2>
 <p>ISODocks works out most of what it needs from Revit itself. What it cannot know is which
 <em>symbol</em> to draw and which <em>joint</em> to show, because Revit has no equivalent
 of either. Two codes supply them.</p>
@@ -268,7 +318,7 @@ are properties of the family type, so setting them once covers every placement.<
 file, then to a sensible default derived from the Revit part type. It warns rather than
 guessing when nothing fits.</p>
 
-<h2 id="mapping">9. The mapping window</h2>
+<h2 id="mapping">10. The mapping window</h2>
 <p>The mapping window lists every fitting and accessory family type in your model and shows
 where each one's codes come from.</p>
 <table>
@@ -288,7 +338,7 @@ will not resolve.</p>
 workshared project, so your whole team shares one file. A new project starts from the
 defaults built up in previous projects; after that the two are independent.</p>
 
-<h2 id="plant3d">10. Setting up Plant 3D</h2>
+<h2 id="plant3d">11. Setting up Plant 3D</h2>
 <p>Most PCF problems are Plant 3D configuration rather than anything in the file. Five
 settings catch people out, and every one of them is invisible until the output looks
 wrong.</p>
@@ -312,7 +362,7 @@ wrong.</p>
   Plant 3D project folder in Settings.</p>
 </div>
 
-<h2 id="titleblock">11. Title block values</h2>
+<h2 id="titleblock">12. Title block values</h2>
 <p>Exporting asks for the values that fill your iso title block — medium, pipe class,
 project name, and whatever else your style defines. The form is built from the style's own
 configuration, so it matches whichever title block you render with.</p>
@@ -325,7 +375,7 @@ a matching attribute definition. If the line name does not appear where you expe
 turns up in the wrong box, that is the style configuration rather than the export: check that
 <code>IsoConfig.xml</code> and the title block in the <code>.dwt</code> still agree.</p>
 
-<h2 id="trouble">12. Troubleshooting</h2>
+<h2 id="trouble">13. Troubleshooting</h2>
 <table>
   <tr><th>Situation</th><th>What to check</th></tr>
   <tr><td>Nothing is found to export</td><td>The driver parameter in Settings, and that your elements carry a value in it.</td></tr>
@@ -335,10 +385,14 @@ turns up in the wrong box, that is the style configuration rather than the expor
   <tr><td>No weld list on the drawing</td><td>The iso style. Use <code>Final</code>, not <code>Check</code>.</td></tr>
   <tr><td>The file will not render at all</td><td>Unit system: a metric file needs a metric project.</td></tr>
   <tr><td>Your teammate has different mappings</td><td>On a cloud-hosted model the mapping cannot sit beside the central file and is kept per user. The save message tells you when this happens.</td></tr>
+  <tr><td>A branch appears on its own drawing</td><td>The pipe it branches from is not split at the branch point. See <a href="#taps">section 5</a>.</td></tr>
+  <tr><td>Plant 3D reports a disconnect</td><td>Usually an unsplit header at a branch, or a genuine gap in the model. Run <em>Check connectivity</em> first.</td></tr>
+  <tr><td>Filters are not applied to the views</td><td>The view template includes V/G Overrides Filters. See <a href="#template">section 4</a>.</td></tr>
+  <tr><td>The drawing does not fit its title block</td><td>The view template fixes the scale. Exclude View Scale from the template to let each view fill its sheet.</td></tr>
   <tr><td>Output looks unchanged after a fix</td><td>Re-run <em>PCF to Iso</em> and reopen the drawing. A stale drawing on screen is the most common false alarm.</td></tr>
 </table>
 
-<h2 id="license">13. License verification</h2>
+<h2 id="license">14. License verification</h2>
 <p>At start-up ISODocks checks with the Autodesk App Store that your account is licensed. It
 sends your Autodesk user identifier and the app identifier, and nothing else — no model
 data, no file names, no usage information. The result is cached so the add-in keeps working
@@ -348,7 +402,7 @@ reconnect.</p>
 disclosure and reach us. Full detail is in the
 <a href="privacy-isodocks.html">privacy policy</a>.</p>
 
-<h2 id="support">14. Support</h2>
+<h2 id="support">15. Support</h2>
 <p>Questions, problems and feature requests:
 <a href="mailto:info.dev4revit@gmail.com">info.dev4revit@gmail.com</a>. It helps to include
 your Revit release, whether the issue is on the 3D ISO or PCF side, and the export report or
