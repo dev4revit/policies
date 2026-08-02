@@ -206,13 +206,13 @@ supports. A hanger family that is <em>not</em> declared is treated as an ordinar
 which puts a joint in the drawing where there is none.</p>
 <p>Hangers need no driver parameter value of their own.</p>
 
-<h3 id="taps">Branch connections</h3>
+<h3 id="taps">Branch connections — no spuds</h3>
 <p>Where a smaller line branches off a larger one, the larger pipe must be
 <strong>split at the branch</strong> so the branch fitting sits between two pipes.</p>
-<p>Revit lets you place a spigot or tap fitting against a pipe that runs through in one
-piece. That models correctly and looks right in 3D, but ISODocks cannot express it: the
-branch is written as a separate run and Plant 3D draws it on its own sheet, reporting a
-disconnect.</p>
+<p><strong>Spud connections are not supported</strong> — that is, a fitting set onto a pipe
+that runs through in one piece. Revit allows it and it looks right in 3D, but ISODocks
+cannot express it: the branch is written as a separate run and Plant 3D draws it on its own
+sheet, reporting a disconnect.</p>
 <div class="note warn">
   <p><strong>If a branch appears on a drawing of its own</strong>, check whether the header
   it comes off is one continuous pipe. Split it at the branch point and export again.</p>
@@ -385,8 +385,8 @@ turns up in the wrong box, that is the style configuration rather than the expor
   <tr><td>No weld list on the drawing</td><td>The iso style. Use <code>Final</code>, not <code>Check</code>.</td></tr>
   <tr><td>The file will not render at all</td><td>Unit system: a metric file needs a metric project.</td></tr>
   <tr><td>Your teammate has different mappings</td><td>On a cloud-hosted model the mapping cannot sit beside the central file and is kept per user. The save message tells you when this happens.</td></tr>
-  <tr><td>A branch appears on its own drawing</td><td>The pipe it branches from is not split at the branch point. See <a href="#taps">section 5</a>.</td></tr>
-  <tr><td>Plant 3D reports a disconnect</td><td>Usually an unsplit header at a branch, or a genuine gap in the model. Run <em>Check connectivity</em> first.</td></tr>
+  <tr><td>A branch appears on its own drawing</td><td>A spud connection — the pipe it branches from is not split at the branch point. See <a href="#taps">section 5</a>.</td></tr>
+  <tr><td>Plant 3D reports a disconnect</td><td>Usually a spud connection, or a genuine gap in the model. Run <em>Check connectivity</em> first.</td></tr>
   <tr><td>Filters are not applied to the views</td><td>The view template includes V/G Overrides Filters. See <a href="#template">section 4</a>.</td></tr>
   <tr><td>The drawing does not fit its title block</td><td>The view template fixes the scale. Exclude View Scale from the template to let each view fill its sheet.</td></tr>
   <tr><td>Output looks unchanged after a fix</td><td>Re-run <em>PCF to Iso</em> and reopen the drawing. A stale drawing on screen is the most common false alarm.</td></tr>
