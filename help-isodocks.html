@@ -334,9 +334,18 @@ gaps.</p>
 <p>If you have set a Plant 3D project folder, the dropdowns offer only codes that project
 can actually draw, and the <strong>Problem</strong> column tells you straight away if a code
 will not resolve.</p>
-<p>The mapping is saved next to your model — next to the <em>central</em> model on a
-workshared project, so your whole team shares one file. A new project starts from the
-defaults built up in previous projects; after that the two are independent.</p>
+<h3>Where your settings are kept</h3>
+<p>ISODocks writes two small text files beside your model: one holding the symbol and joint
+codes from this window, and one holding the title block values you enter when exporting.
+Both are named after the model.</p>
+<p>On a workshared project they sit beside the <strong>central</strong> model, so your whole
+team shares them. Where the model has no writable folder of its own — a cloud-hosted
+project, for example — they are kept in your own Windows user profile folder instead, and
+ISODocks tells you so when it saves. In that case they are <strong>not</strong> shared with
+your team, and each person builds up their own.</p>
+<p>Both files are written by ISODocks and should not be edited by hand. A new project starts
+from the codes built up in previous projects; after that the two are independent, so editing
+one project never changes another.</p>
 
 <h2 id="plant3d">11. Setting up Plant 3D</h2>
 <p>Most PCF problems are Plant 3D configuration rather than anything in the file. Five
