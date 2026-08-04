@@ -206,31 +206,14 @@ supports. A hanger family that is <em>not</em> declared is treated as an ordinar
 which puts a joint in the drawing where there is none.</p>
 <p>Hangers need no driver parameter value of their own.</p>
 
-<h3 id="taps">Branch connections — no spuds</h3>
-<p>Where a smaller line branches off a larger one, the larger pipe must be
-<strong>split at the branch</strong> so the branch fitting sits between two pipes.</p>
-<p><strong>Spud connections are not supported</strong> — that is, a fitting set onto a pipe
-that runs through in one piece. Revit allows it and it looks right in 3D, but ISODocks
-cannot express it: the branch is written as a separate run and Plant 3D draws it on its own
-sheet, reporting a disconnect.</p>
-<div class="note warn">
-  <p><strong>If a branch appears on a drawing of its own</strong>, check whether the header
-  it comes off is one continuous pipe. Split it at the branch point and export again.</p>
-</div>
-<p>A tee, or any fitting placed so the pipe is divided at it, needs nothing special — this
-applies only to fittings set onto an undivided pipe.</p>
-
-<h3>Connectivity check</h3>
-<p>The Generate window has a <strong>Check connectivity</strong> button. It walks each line
-and reports three things:</p>
-<table>
-  <tr><th>Finding</th><th>Meaning</th></tr>
-  <tr><td><strong>Island</strong></td><td>An element carrying the line's value but not connected to the rest of it. Always an error — usually a mis-tagged fitting or a broken connection.</td></tr>
-  <tr><td><strong>Split group</strong></td><td>Two separate networks sharing one value. An error, and the dangerous one: it produces a drawing showing two unrelated runs, and it looks plausible.</td></tr>
-  <tr><td><strong>Open end</strong></td><td>A connector leading nowhere. Usually correct; listed for you to check, not flagged as a problem.</td></tr>
-</table>
-<p>Findings are selected in the model so you can see them straight away. Worth running on a
-model you have not generated or exported before.</p>
+<h3 id="taps">Branch connections</h3>
+<p>Branches work whether or not the larger pipe is split at the branch point.</p>
+<p>A <strong>spud connection</strong> — a fitting set onto a pipe that runs through in one
+piece — is supported. ISODocks reads the connection point from the model and writes the
+larger pipe as two lengths meeting at the branch, so the whole line arrives on one drawing.
+Nothing needs to be re-modelled.</p>
+<p>The spud itself is drawn from whichever symbol code its family carries. If it comes out
+as a placeholder, give the family a code — see <a href="#families">section 9</a>.</p>
 
 <h2 id="autotag">6. Tagging as you draw</h2>
 <p>Setting the driver parameter on every element by hand is the slowest part of preparing a
@@ -394,8 +377,7 @@ turns up in the wrong box, that is the style configuration rather than the expor
   <tr><td>No weld list on the drawing</td><td>The iso style. Use <code>Final</code>, not <code>Check</code>.</td></tr>
   <tr><td>The file will not render at all</td><td>Unit system: a metric file needs a metric project.</td></tr>
   <tr><td>Your teammate has different mappings</td><td>On a cloud-hosted model the mapping cannot sit beside the central file and is kept per user. The save message tells you when this happens.</td></tr>
-  <tr><td>A branch appears on its own drawing</td><td>A spud connection — the pipe it branches from is not split at the branch point. See <a href="#taps">section 5</a>.</td></tr>
-  <tr><td>Plant 3D reports a disconnect</td><td>Usually a spud connection, or a genuine gap in the model. Run <em>Check connectivity</em> first.</td></tr>
+  <tr><td>Plant 3D reports a disconnect</td><td>A genuine gap in the model. Run <em>Check connectivity</em> first — it finds these before export.</td></tr>
   <tr><td>Filters are not applied to the views</td><td>The view template includes V/G Overrides Filters. See <a href="#template">section 4</a>.</td></tr>
   <tr><td>The drawing does not fit its title block</td><td>The view template fixes the scale. Exclude View Scale from the template to let each view fill its sheet.</td></tr>
   <tr><td>Output looks unchanged after a fix</td><td>Re-run <em>PCF to Iso</em> and reopen the drawing. A stale drawing on screen is the most common false alarm.</td></tr>
